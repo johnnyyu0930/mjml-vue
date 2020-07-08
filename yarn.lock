@@ -2328,7 +2328,7 @@ commander@2.17.x:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commander@^2.11.0, commander@^2.18.0, commander@^2.20.0:
+commander@^2.18.0, commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -4774,13 +4774,6 @@ json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
-
-json2mjml@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/json2mjml/-/json2mjml-1.0.3.tgz#a67e945d687aa39abcc2764eb131ac8d487d41fe"
-  integrity sha512-dxQZZiQKSUSWVE46D3vf8NDjd/mgN+ejy/vR2DXz8/QUUMHGlMm3WeCqPw/5LoCKt+dH382q7QXbl9ZxDCUecw==
-  dependencies:
-    commander "^2.11.0"
 
 json3@^3.3.2:
   version "3.3.3"

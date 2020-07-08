@@ -17,8 +17,6 @@
 <script>
 import OneButton from "./mjml-module/OneButton";
 import TwoButton from "./mjml-module/TwoButton";
-
-import json2mjml from "json2mjml";
 import { mjmlToHtml } from "../api";
 
 
@@ -65,7 +63,7 @@ export default {
         }
       });
 
-      const { data } = await mjmlToHtml(json2mjml(mjml));
+      const { data } = await mjmlToHtml(JSON.stringify(mjml));
       this.html = data.html;
     }
   }
