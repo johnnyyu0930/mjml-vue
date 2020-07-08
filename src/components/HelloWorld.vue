@@ -1,42 +1,75 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+    <OneButton ref="mj-1" />
+    <TwoButton ref="mj-2" />
+    <button @click="preview">preview</button>
+    <div>
+      <iframe
+        :srcdoc="html"
+        width="100%"
+        style="background-color: white; min-height: 500px;"
+        height="100%"
+      ></iframe>
+    </div>
   </div>
 </template>
 
 <script>
+import OneButton from "./mjml-module/OneButton";
+import TwoButton from "./mjml-module/TwoButton";
+
+import json2mjml from "json2mjml";
+import { mjmlToHtml } from "../api";
+
+
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
+  components: {
+    OneButton,
+    TwoButton
+  },
   props: {
     msg: String
+  },
+  data() {
+    return {
+      html: ""
+    };
+  },
+  methods: {
+    async preview() {
+      let mjml = {
+        tagName: "mjml",
+        children: [
+          {
+            tagName: "mj-head",
+            children: [
+              { tagName: "mj-preview", content: "test", id: "8SWC6Hn0Zitv" }
+            ],
+            attributes: {},
+            id: "dfG1V6YPXqqV"
+          },
+          {
+            tagName: "mj-body",
+            children: []
+          }
+        ]
+      };
+      const vm = this;
+      console.log(this.$refs);
+
+      Object.keys(this.$refs).forEach(el => {
+        if (el.includes("mj-")) {
+          console.log(vm.$refs[el])
+          mjml.children[1].children.push(...vm.$refs[el].mjml);
+        }
+      });
+
+      const { data } = await mjmlToHtml(json2mjml(mjml));
+      this.html = data.html;
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
