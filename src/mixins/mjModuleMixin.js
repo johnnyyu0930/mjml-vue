@@ -15,4 +15,9 @@ export default {
       return this.$children.map((el) => mjmlFormater(el));
     },
   },
+  props: {
+    settings: {
+      type: Object,
+    },
+  },
 };

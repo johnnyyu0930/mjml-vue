@@ -28,7 +28,7 @@
           :is="element.type"
           :settings="element.settings"
           :ref="`mj-${index}`"
-          @click="handleClick(index)"
+          @click="handleClick(element.id)"
         />
       </draggable>
     </div>

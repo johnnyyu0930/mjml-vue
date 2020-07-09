@@ -22,11 +22,6 @@ export default {
     MjButton
   },
   mixins: [mjModuleMixin],
-  props: {
-    settings: {
-      type: Object
-    }
-  },
 };
 </script>
 
