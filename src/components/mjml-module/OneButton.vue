@@ -1,5 +1,5 @@
 <template>
-  <MjSection @click="$emit('click')">
+  <MjSection @click="$emit('click')" @delete="$emit('delete')">
     <MjColumn>
       <MjButton :content="settings.content" />
     </MjColumn>

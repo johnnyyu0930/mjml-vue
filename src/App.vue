@@ -17,7 +17,7 @@
         :options="builderOptions"
         @start="drag=true"
         @end="drag=false"
-        class="dragArea editor-area elevation-2"
+        class="dragArea editor-area"
         data-empty-template="Drag Elements from the Elements Bar into this area"
         :class="{empty: !activeElements.length}"
       >
@@ -28,15 +28,13 @@
           :is="element.type"
           :settings="element.settings"
           :ref="`mj-${index}`"
+          @delete="activeElements.splice(index, 1)"
           @click="handleClick(element.id)"
         />
       </draggable>
     </div>
     <div class="editor-setting">
-      <component
-        v-if="selectedElement"
-        :is="`${selectedElement.type}Setting`"
-      ></component>
+      <component v-if="selectedElement" :is="`${selectedElement.type}Setting`"></component>
     </div>
   </div>
 </template>
@@ -74,7 +72,7 @@ export default {
           name: "一個按鈕",
           type: "OneButton",
           settings: {
-            content: 'example'
+            content: "example"
           }
         },
         {
@@ -82,12 +80,11 @@ export default {
           name: "兩個按鈕",
           type: "TwoButton",
           settings: {
-            content1: 'button1',
-            content2: 'button2'
+            content1: "button1",
+            content2: "button2"
           }
         }
-      ],
-     
+      ]
     };
   },
   computed: {
@@ -95,7 +92,7 @@ export default {
       builderElements: state => state.activeElements
     }),
     ...mapGetters({
-      selectedElement: 'getSelectedElement'
+      selectedElement: "getSelectedElement"
     }),
     activeElements: {
       get() {
@@ -121,7 +118,6 @@ export default {
     handleClick(index) {
       this.SET_ACTIVE_ELEMENT_INDEX(index);
     }
-    
   }
 };
 </script>
@@ -137,13 +133,35 @@ export default {
   .editor-builder,
   .editor-setting {
     height: 100%;
+    max-height: 100%;
+    overflow: auto;
     flex: 1;
     border: 1px solid #000;
+    padding: 40px 10px;
   }
 
   .dragArea {
     width: 100%;
     height: 100%;
+  }
+
+  .editor-area.empty {
+    min-height: 500px;
+    background: #cfcdcd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .editor-area.empty:after {
+    content: attr(data-empty-template);
+  }
+
+  @media (max-width: 1366px) {
+    .editor-area.empty {
+      min-height: 400px;
+    }
   }
 
   .element-ghost {
