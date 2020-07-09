@@ -1,9 +1,9 @@
 <template>
   <MjSection>
-    <MjColumn style="width: 50%">
+    <MjColumn :width="ColumnWidth">
       <MjButton />
     </MjColumn>
-    <MjColumn style="width: 50%">
+    <MjColumn :width="ColumnWidth">
       <MjButton />
     </MjColumn>
   </MjSection>
@@ -16,6 +16,11 @@ import MjButton from "../mjml-vue/mj-button";
 import mjModuleMixin from "../../mixins/mjModuleMixin";
 
 export default {
+  data() {
+    return {
+      ColumnWidth: "50%"
+    }
+  },
   components: {
     MjSection,
     MjColumn,
