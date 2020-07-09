@@ -1,5 +1,5 @@
 <template>
-  <div style="margin:0px auto;max-width:600px;">
+  <div class="session" style="margin:0px auto;max-width:600px;" @click="$emit('click')">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
         <tbody>
           <tr>

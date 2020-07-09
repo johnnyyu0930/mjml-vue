@@ -25,7 +25,7 @@
                   :style="settings"
                   style="text-decoration:none;font-family:Ubuntu, Helvetica, Arial, sans-serif;
                   font-size:13px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;"
-                >{{text}}</p>
+                >{{content}}</p>
               </a>
             </td>
           </tr>
@@ -36,13 +36,23 @@
 </template>
 <script>
 export default {
+  props: {
+    content: {
+      type: String,
+      default: 'Button'
+    },
+  },
+  computed: {
+    mjml() {
+      return {
+        tagName: "mj-button",
+        content: this.content,
+        attributes: {},
+      }
+    }
+  },
   data() {
     return {
-      mjml: {
-        tagName: "mj-button",
-        content: "example text",
-        attributes: {},
-      },
       text: "example text",
       settings: {
         "padding-top": "0px",

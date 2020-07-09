@@ -1,10 +1,10 @@
 <template>
-  <MjSection>
+  <MjSection @click="$emit('click')">
     <MjColumn style="width: 50%">
-      <MjButton />
+      <MjButton :content="settings.content1"/>
     </MjColumn>
     <MjColumn style="width: 50%">
-      <MjButton />
+      <MjButton :content="settings.content2"/>
     </MjColumn>
   </MjSection>
 </template>
@@ -21,7 +21,12 @@ export default {
     MjColumn,
     MjButton
   },
-  mixins: [mjModuleMixin]
+  mixins: [mjModuleMixin],
+  props: {
+    settings: {
+      type: Object
+    }
+  },
 };
 </script>
 
