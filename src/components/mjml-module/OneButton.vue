@@ -1,5 +1,13 @@
 <template>
-  <MjSection @click="$emit('click')" @delete="$emit('delete')">
+  <MjSection
+    @click="$emit('click')"
+    @delete="$emit('delete')"
+    @drop="$emit('drop')"
+    @moveUp="$emit('moveUp')"
+    @moveDown="$emit('moveDown')"
+    @edit="$emit('edit')"
+    @clone="$emit('clone')"
+  >
     <MjColumn>
       <MjButton :content="settings.content" />
     </MjColumn>
@@ -10,7 +18,7 @@
 import MjSection from "../mjml-vue/mj-section";
 import MjColumn from "../mjml-vue/mj-column";
 import MjButton from "../mjml-vue/mj-button";
-import mjModuleMixin from '../../mixins/mjModuleMixin';
+import mjModuleMixin from "../../mixins/mjModuleMixin";
 
 export default {
   components: {
@@ -18,7 +26,7 @@ export default {
     MjColumn,
     MjButton
   },
-  mixins: [mjModuleMixin],
+  mixins: [mjModuleMixin]
 };
 </script>
 

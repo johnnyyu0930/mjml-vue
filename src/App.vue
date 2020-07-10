@@ -29,7 +29,11 @@
           :settings="element.settings"
           :ref="`mj-${index}`"
           @delete="activeElements.splice(index, 1)"
+          @moveUp="moveUp(index)"
+          @moveDown="moveDown(index)"
+          @edit="handleClick(element.id)"
           @click="handleClick(element.id)"
+          @clone="clone(index)"
         />
       </draggable>
     </div>
@@ -61,7 +65,7 @@ export default {
     return {
       builderOptions: {
         forceFallback: true,
-        handle: "div.session",
+        handle: ".drop-element",
         group: "edm",
         ghostClass: "element-ghost",
         chosenClass: "element-drop"
@@ -117,6 +121,26 @@ export default {
     },
     handleClick(index) {
       this.SET_ACTIVE_ELEMENT_INDEX(index);
+    },
+    clone(index) {
+      const cloneElement = this.insertComponent(this.activeElements[index]);
+      this.activeElements.splice(index, 0, cloneElement);
+    },
+    moveUp(index) {
+      const element = this.activeElements[index];
+      if (index === 0) {
+        return;
+      }
+      this.activeElements.splice(index, 1);
+      this.activeElements.splice(index - 1, 0, element);
+    },
+    moveDown(index) {
+      const element = this.activeElements[index];
+      if (index === this.activeElements.length) {
+        return;
+      }
+      this.activeElements.splice(index, 1);
+      this.activeElements.splice(index + 1, 0, element);
     }
   }
 };

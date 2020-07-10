@@ -1,10 +1,18 @@
 <template>
-  <MjSection @click="$emit('click')" @delete="$emit('delete')">
+  <MjSection
+    @click="$emit('click')"
+    @delete="$emit('delete')"
+    @drop="$emit('drop')"
+    @moveUp="$emit('moveUp')"
+    @moveDown="$emit('moveDown')"
+    @edit="$emit('edit')"
+    @clone="$emit('clone')"
+  >
     <MjColumn style="width: 50%">
-      <MjButton :content="settings.content1"/>
+      <MjButton :content="settings.content1" />
     </MjColumn>
     <MjColumn style="width: 50%">
-      <MjButton :content="settings.content2"/>
+      <MjButton :content="settings.content2" />
     </MjColumn>
   </MjSection>
 </template>
@@ -21,7 +29,7 @@ export default {
     MjColumn,
     MjButton
   },
-  mixins: [mjModuleMixin],
+  mixins: [mjModuleMixin]
 };
 </script>
 

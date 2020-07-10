@@ -39,16 +39,25 @@ export default {
   props: {
     content: {
       type: String,
-      default: 'Button'
+      default: "Button"
     },
+    paddingTop: {
+      type: String
+    },
+    paddintBottom: {
+      type: String
+    }
   },
   computed: {
     mjml() {
       return {
         tagName: "mj-button",
         content: this.content,
-        attributes: {},
-      }
+        attributes: {
+          "padding-top": this.paddingTop,
+          "padding-bottom": this.paddintBottom
+        }
+      };
     }
   },
   data() {

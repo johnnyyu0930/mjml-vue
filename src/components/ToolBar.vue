@@ -6,14 +6,14 @@
     <span class="toolbar-line toolbar-line-left"></span>
     <div class="toolbar-tool-layout">
       <div class="order-tool">
-        <button>拖曳</button>
-        <button>向上</button>
-        <button>向下</button>
+        <button class="drop-element" @click.prevent="$emit('drop')">拖曳</button>
+        <button @click.prevent="$emit('moveUp')">向上</button>
+        <button @click.prevent="$emit('moveDown')">向下</button>
       </div>
       <div class="editor-tool">
-        <button>編輯</button>
-        <button>複製</button>
-        <button @click="$emit('delete')">刪除</button>
+        <button @click.prevent="$emit('edit')">編輯</button>
+        <button @click.prevent="$emit('clone')">複製</button>
+        <button @click.prevent="$emit('delete')">刪除</button>
       </div>
     </div>
   </Fragment>
