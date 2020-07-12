@@ -10,9 +10,23 @@ function mjmlFormater(node) {
 }
 
 export default {
+  props: {
+    settings: {
+      type: Object
+    }
+  },
   computed: {
     mjml() {
       return this.$children.map((el) => mjmlFormater(el));
     },
+    columnWidth() {
+      const count = this.settings.length;
+      if (count !== undefined) {
+        return parseInt((100 / count, 10))
+      } else {
+        return "100%"
+      }
+
+    }
   },
 };

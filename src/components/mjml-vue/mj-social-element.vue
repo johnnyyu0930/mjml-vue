@@ -1,13 +1,13 @@
 <template>
   <table
-    :align="children.settings.align"
+    :align="settings.align"
     border="0"
     cellpadding="0"
     cellspacing="0"
     role="presentation"
     :class="{
-      'social-vertical': vertical,
-      'social-horizontal': !vertical,
+      'social-vertical': settings.vertical,
+      'social-horizontal': !settings.vertical,
     }"
   >
     <tr>
@@ -18,20 +18,20 @@
           cellspacing="0"
           role="presentation"
           style="border-radius:3px;"
-          :style="children.settings.width"
+          :style="settings.width"
         >
           <tr>
             <td
               style="font-size:0;height:30px;vertical-align:middle;"
-              :style="children.settings.width"
+              :style="settings.width"
             >
-              <a :href="children.settings.href" target="_blank">
+              <a :href="settings.href" target="_blank">
                 <img
-                  :alt="children.settings.alt"
-                  :src="children.settings.src"
+                  :alt="settings.alt"
+                  :src="settings.src"
                   style="border-radius:3px;display:block;"
-                  :width="children.settings.width"
-                  :height="children.settings.width"
+                  :width="settings.width"
+                  :height="settings.width"
                 />
               </a>
             </td>
@@ -40,19 +40,19 @@
       </td>
       <td style="vertical-align:middle;">
         <a
-          :href="children.settings.href"
+          :href="settings.href"
           style="text-decoration:none;"
           :style="{
-            color: children.settings.color,
-            'font-size': children.settings['font-size'],
-            'font-weight': children.settings['font-weight'],
-            'font-style': children.settings['font-style'],
-            'font-family': children.settings['font-family'],
-            'line-height': children.settings['line-height'],
+            color: settings.color,
+            'font-size': settings['font-size'],
+            'font-weight': settings['font-weight'],
+            'font-style': settings['font-style'],
+            'font-family': settings['font-family'],
+            'line-height': settings['line-height'],
           }"
           target="_blank"
         >
-          {{ children.settings.text }}
+          {{ settings.text }}
         </a>
       </td>
     </tr>
@@ -62,12 +62,23 @@
 <script>
 export default {
   props: {
-    children: {
+    settings: {
       type: Object,
-    },
-    vertical: {
-      type: Boolean,
-      default: false
+      default: function () {
+        return {
+          align: "right",
+          color: "#aaaaaa",
+          text: "facebook",
+          vertical: false,
+          'font-size': "13px",
+          'font-weight': "500",
+          'font-style': "normal",
+          'font-family': "Helvatica",
+          'line-height': "1.2",
+          width: "30px",
+          src: require('../../assets/fb.png')
+        }
+      }
     }
   },
   data() {
@@ -78,9 +89,6 @@ export default {
         children: [],
       },
     };
-  },
-  mounted() {
-    console.log(this.children.settings);
-  },
+  }
 };
 </script>

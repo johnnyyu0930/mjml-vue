@@ -1,7 +1,7 @@
 <template>
   <MjSection>
-    <MjColumn>
-      <MjButton />
+    <MjColumn :columnWidth="columnWidth" v-for="image in settings" :key="image.src" >
+      <MjImage :settings="image" />
     </MjColumn>
   </MjSection>
 </template>
@@ -9,14 +9,14 @@
 <script>
 import MjSection from "../mjml-vue/mj-section";
 import MjColumn from "../mjml-vue/mj-column";
-import MjButton from "../mjml-vue/mj-button";
+import MjImage from "../mjml-vue/mj-image";
 import mjModuleMixin from '../../mixins/mjModuleMixin';
 
 export default {
   components: {
     MjSection,
     MjColumn,
-    MjButton
+    MjImage
   },
   mixins: [mjModuleMixin]
 };

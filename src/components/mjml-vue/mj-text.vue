@@ -12,11 +12,21 @@
       <td
         :align="settings.align"
         style="font-size:0px;word-break:break-word;"
-        :style="{background: settings['container-background-color'], padding: `${settings['padding-top']} ${settings['padding-bottom']}`}"
+        :style="{
+          background: settings['container-background-color'],
+          padding: `${settings['padding-top']} ${settings['padding-right']} ${settings['padding-bottom']} ${settings['padding-left']}`,
+        }"
       >
         <div
           style="line-height:1"
-          :style="{'font-family': settings['font-family'], 'font-size': settings['font-size'], 'font-style': settings['font-style'], 'font-weight': settings['font-weight'], 'text-align': settings['font-weight'], color: settings.color}"
+          :style="{
+            'font-family': settings['font-family'],
+            'font-size': settings['font-size'],
+            'font-style': settings['font-style'],
+            'font-weight': settings['font-weight'],
+            'text-align': settings['font-weight'],
+            color: settings.color,
+          }"
         >
           <slot></slot>
         </div>
@@ -26,24 +36,33 @@
 </template>
 <script>
 export default {
+  props: {
+    settings: {
+      type: Object,
+      default: function() {
+        return {
+          "padding-top": "10px",
+          "padding-right": "20px",
+          "padding-left": "20px",
+          "padding-bottom": "10px",
+          align: "center",
+          "font-family": "Halvatica",
+          "font-size": "12px",
+          "font-style": "normal",
+          "font-weight": "400",
+          "text-align": "center",
+          "line-height": "1.2",
+          color: "black",
+          "container-background-color": "",
+        };
+      },
+    },
+  },
   data() {
     return {
       mjml: {
         tagName: "mj-text",
         attributes: {},
-      },
-      settings: {
-        "padding-top": "10px",
-        "padding-bottom": "13px",
-        align: "right",
-        "font-family": "Times new Roman",
-        "font-size": "12px",
-        "font-style": "italic",
-        "font-weight": "900",
-        "text-align": "right",
-        "line-height": "2",
-        color: "pink",
-        "container-background-color": "aliceblue",
       },
     };
   },

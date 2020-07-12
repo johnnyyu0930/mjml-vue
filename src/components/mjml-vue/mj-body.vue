@@ -1,22 +1,27 @@
 <template>
   <body :style="{'background-color': settings['background-color']}" class="mj-body">
-    <div :style="{'background-color': settings['background-color']}">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </body>
 </template>
 
 <script>
 export default {
-data() {
+  props: {
+    settings: {
+      type: Object,
+      default: function() {
+        return {
+          'background-color': '#ffffff'
+        }
+      }
+    }
+  },
+qdata() {
     return {
       mjml: {
         tagName: "mj-body",
         attributes: {},
         children: []
-      },
-      settings: {
-        'background-color': ''
       }
     };
   }

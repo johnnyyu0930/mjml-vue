@@ -14,19 +14,26 @@
 </template>
 <script>
 export default {
+  props: {
+    settings: {
+      type: Object,
+      default: function () {
+        return {
+          "padding-top": "10px",
+          "padding-bottom": "25px",
+          "container-background-color": "pink",
+          "border-color": "#000000",
+          "border-style": "solid",
+          "border-width": "2px"
+        }
+      }
+    }
+  },
   data() {
     return {
       mjml: {
         tagName: "mj-divider",
         attributes: {},
-      },
-      settings: {
-        "padding-top": "10px",
-        "padding-bottom": "25px",
-        "container-background-color": "pink",
-        "border-color": "#000000",
-        "border-style": "solid",
-        "border-width": "2px"
       }
     };
   }

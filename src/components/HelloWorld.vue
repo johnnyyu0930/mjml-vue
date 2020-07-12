@@ -1,42 +1,24 @@
 <template>
-  <div>
-    <OneButton ref="mj-1" />
-    <TwoButton ref="mj-2" />
+  <mjBody>
     <mjWrapper>
-      <mjSection>
-        <mjColumn>
-          <mjSocial />
-          <mjDivider />
-          <mjImage />
-          <mjText>
-            <h1>hellow world</h1>
-          </mjText>
-        </mjColumn>
-      </mjSection>
+      <Picture />
+      <Divider />
+      <Text />
+      <Button />
     </mjWrapper>
-
-    <button @click="preview">preview</button>
-    <div>
-      <iframe
-        :srcdoc="html"
-        width="100%"
-        style="background-color: white; min-height: 500px;"
-        height="100%"
-      ></iframe>
-    </div>
-  </div>
+  </mjBody>
 </template>
 
 <script>
-import OneButton from "./mjml-module/OneButton";
-import TwoButton from "./mjml-module/TwoButton";
-import mjDivider from "./mjml-vue/mj-divider";
-import mjImage from "./mjml-vue/mj-image";
-import mjText from "./mjml-vue/mj-text";
-import mjColumn from "./mjml-vue/mj-column";
-import mjSection from "./mjml-vue/mj-section";
+import Divider from "./mjml-module/Divider";
+import Picture from "./mjml-module/Picture";
+import Text from "./mjml-module/Text";
+// import mjColumn from "./mjml-vue/mj-column";
+// import mjSection from "./mjml-vue/mj-section";
 import mjWrapper from "./mjml-vue/mj-wrapper";
-import mjSocial from "./mjml-vue/mj-social";
+// import Social from "./mjml-module/Social";
+import mjBody from "./mjml-vue/mj-body";
+// import mjGroup from "./mjml-vue/mj-group";
 
 import json2mjml from "json2mjml";
 import { mjmlToHtml } from "../api";
@@ -44,18 +26,13 @@ import { mjmlToHtml } from "../api";
 export default {
   name: "HelloWorld",
   components: {
-    OneButton,
-    TwoButton,
-    mjDivider,
-    mjImage,
-    mjText,
-    mjColumn,
-    mjSection,
+    Divider,
+    Picture,
+    Text,
     mjWrapper,
-    mjSocial
-  },
-  props: {
-    msg: String,
+    // Social,
+    mjBody,
+    // mjGroup,
   },
   data() {
     return {
@@ -115,4 +92,3 @@ a {
   color: #42b983;
 }
 </style>
-

@@ -1,8 +1,8 @@
 <template>
   <div
     class="mj-section"
-    style="margin:0px auto"
-    :style="{ 'max-width': settings.width }"
+    style="margin:0px auto;"
+    :style="{background: settings['background'], 'background-color': settings['background'], 'max-width': maxWidth}"
   >
     <table
       align="center"
@@ -11,6 +11,7 @@
       cellspacing="0"
       role="presentation"
       style="width:100%;"
+      :style="{background: settings['background'], 'background-color': settings['background'], 'max-width': maxWidth}"
     >
       <tbody>
         <tr>
@@ -27,17 +28,30 @@
 
 <script>
 export default {
+  props: {
+    settings: {
+      type: Object,
+      default: function() {
+        return {
+          'full-width': true,
+          background: "#eeeeee"
+        }
+      }
+    }
+  },
   data() {
     return {
       mjml: {
         tagName: "mj-section",
         attributes: {},
         children: [],
-      },
-      settings: {
-        width: "100%", // 這是 body width的設定, 所以每個 section 的數值都要一致。
-      },
+      }
     };
+  },
+  computed: {
+    maxWidth() {
+      return this.settings['full-width'] ? "100%" : "600px"
+    }
   },
 };
 </script>

@@ -4,7 +4,7 @@
       :align="settings.align"
       vertical-align="middle"
       style="font-size:0px;word-break:break-word;"
-      :style="{background: settings['container-background-color'], paddingTop: settings['padding-top'], paddingBottom: settings['padding-bottom']}"
+      :style="{paddingTop: settings['padding-top'], paddingLeft: settings['padding-left'], paddingBottom: settings['padding-bottom'], paddingRight: settings['padding-right']}"
     >
       <table
         border="0"
@@ -26,10 +26,10 @@
             <a
               :href="settings.href"
               style="display:inline-block;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;"
-              :style="{width: settings['width'], background: settings['background-color'], color: settings['color'], fontFamily: settings['font-family'], fontSize: settings['font-size'], fontWeight: settings['font-weight'], borderRadius: settings['border-radius']}"
+              :style="{width: buttonWidth, background: settings['background-color'], color: settings['color'], fontFamily: settings['font-family'], fontSize: settings['font-size'], fontWeight: settings['font-weight'], borderRadius: settings['border-radius']}"
               target="_blank"
             >
-              {{ text }}
+              {{ settings.content }}
             </a>
           </td>
         </tr>
@@ -39,31 +39,52 @@
 </template>
 <script>
 export default {
+  props: {
+    settings: {
+      type: Object,
+      default: function () {
+        return {
+          content: "button",
+          "align": "center",
+          "width": "",
+          "height": "",
+          "href": "#",
+          "font-family": "Halvatica",
+          "font-size": "13px",
+          "font-weight": "500",
+          "color": "#ffffff",
+          "border": "",
+          "border-radius": "8px",
+          "padding-top": "10px",
+          "padding-bottom": "25px",
+          "padding-left": "10px",
+          "padding-right": "25px",
+          "background-color": "#aaaaaa"
+        }
+      }
+    }
+  },
   data() {
     return {
       mjml: {
         tagName: "mj-button",
-        content: "example text",
         attributes: {},
-      },
-      text: "example text",
-      settings: {
-        "align": "right",
-        "width": "220px",
-        "height": "50px",
-        "href": "#",
-        "font-family": "Times New Roman",
-        "font-size": "10px",
-        "font-weight": "900",
-        "color": "plum",
-        "border": "2px solid yellow",
-        "border-radius": "8px",
-        "padding-top": "10px",
-        "padding-bottom": "25px",
-        "background-color": "#414141",
-        "container-background-color": ""
-      },
+      }
     };
+  },
+  computed: {
+    buttonWidth() {
+      let borderWidth = 0;
+      if (this.settings.border !== undefined && this.settings.border !== '') {
+        const _array = this.settings.border.split(' ');
+        borderWidth = _array[0].replace('px', '');
+      }
+      if (this.settings.width !== undefined && this.settings.width !== '') {
+        return this.settings.width - this.settings['padding-left'] - this.settings['padding-right'] - borderWidth;
+      } else {
+        return ''
+      }
+    }
   },
 };
 </script>
