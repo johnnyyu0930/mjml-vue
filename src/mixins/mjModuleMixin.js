@@ -1,8 +1,13 @@
+import _ from 'lodash';
+
 function mjmlFormater(node) {
   if (node.$children.length > 0) {
     node.$children.forEach((el) => {
       if (node.mjml) {
-        node.mjml.children.push(mjmlFormater(el));
+        const elMjml = mjmlFormater(el);
+        const nodes = _.filter(node.mjml.children, (e) => e.id != elMjml.id);
+        nodes.push(elMjml);
+        node.mjml.children = nodes;
       }
     });
   }

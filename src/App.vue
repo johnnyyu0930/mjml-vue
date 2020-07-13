@@ -1,5 +1,6 @@
 <template>
   <div id="nununi-editor">
+    <Preview :html="html" v-if="isPreview" @close="isPreview = false"/>
     <div class="editor-modules">
       <draggable
         v-model="mjmlModules"
@@ -10,6 +11,7 @@
       >
         <div v-for="module in mjmlModules" :key="module.id" class="mjml-module">{{module.name}}</div>
       </draggable>
+      <button @click="handlePreview">預覽</button>
     </div>
     <div class="editor-builder">
       <draggable
@@ -49,12 +51,15 @@ import OneButton from "./components/mjml-module/OneButton";
 import TwoButton from "./components/mjml-module/TwoButton";
 import OneButtonSetting from "./components/module-setting/OneButtonSetting";
 import TwoButtonSetting from "./components/module-setting/TwoButtonSetting";
+import Preview from "./components/Preview";
+import { mjmlToHtml } from "./api";
 
 import { mapState, mapMutations, mapGetters } from "vuex";
 import { SET_ACTIVE_ELEMENTS, SET_ACTIVE_ELEMENT_INDEX } from "./store/types";
 export default {
   name: "App",
   components: {
+    Preview,
     draggable,
     OneButton,
     TwoButton,
@@ -70,6 +75,8 @@ export default {
         ghostClass: "element-ghost",
         chosenClass: "element-drop"
       },
+      isPreview: false,
+      html: "",
       mjmlModules: [
         {
           id: "one-button",
@@ -109,6 +116,38 @@ export default {
   },
   methods: {
     ...mapMutations([SET_ACTIVE_ELEMENTS, SET_ACTIVE_ELEMENT_INDEX]),
+    async handlePreview() {
+      let mjml = {
+        tagName: "mjml",
+        children: [
+          {
+            tagName: "mj-head",
+            children: [
+              { tagName: "mj-preview", content: "test", id: "8SWC6Hn0Zitv" }
+            ],
+            attributes: {},
+            id: "dfG1V6YPXqqV"
+          },
+          {
+            tagName: "mj-body",
+            children: []
+          }
+        ]
+      };
+      console.log(this.$refs);
+
+      await Object.keys(this.$refs).forEach(el => {
+        if (el.includes("mj-")) {
+          mjml.children[1].children.push(...this.$refs[el][0].mjml);
+        }
+      });
+
+      console.log(mjml);
+
+      const { data } = await mjmlToHtml(JSON.stringify(mjml));
+      this.html = data.html;
+      this.isPreview = true;
+    },
     insertComponent(obj) {
       const newEl = JSON.parse(JSON.stringify(obj));
       newEl.id =
@@ -121,6 +160,7 @@ export default {
     },
     handleClick(index) {
       this.SET_ACTIVE_ELEMENT_INDEX(index);
+      console.log(this.$refs['mj-0'][0].mjml)
     },
     clone(index) {
       const cloneElement = this.insertComponent(this.activeElements[index]);

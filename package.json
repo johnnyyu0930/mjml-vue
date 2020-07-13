@@ -10,6 +10,7 @@
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.2",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.19",
     "node-sass": "^4.14.1",
     "vue": "^2.6.11",
     "vue-fragment": "^1.5.1",

@@ -12,6 +12,7 @@ export default {
       mjml: {
         tagName: "mj-column",
         attributes: {},
+        id: this._uid,
         children: []
       }
     };

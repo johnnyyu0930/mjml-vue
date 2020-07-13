@@ -25,7 +25,9 @@
                   :style="settings"
                   style="text-decoration:none;font-family:Ubuntu, Helvetica, Arial, sans-serif;
                   font-size:13px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;"
-                >{{content}}</p>
+                >
+                  {{content}}
+                </p>
               </a>
             </td>
           </tr>
@@ -35,11 +37,14 @@
   </table>
 </template>
 <script>
+// import Editor from "@tinymce/tinymce-vue";
+
 export default {
+  components: {
+  },
   props: {
     content: {
-      type: String,
-      default: "Button"
+      type: String
     },
     paddingTop: {
       type: String
@@ -53,6 +58,7 @@ export default {
       return {
         tagName: "mj-button",
         content: this.content,
+        id: this._uid,
         attributes: {
           "padding-top": this.paddingTop,
           "padding-bottom": this.paddintBottom
@@ -62,7 +68,6 @@ export default {
   },
   data() {
     return {
-      text: "example text",
       settings: {
         "padding-top": "0px",
         "padding-bottom": "0px",

@@ -45,6 +45,7 @@ export default {
       toolbarShow: false,
       mjml: {
         tagName: "mj-section",
+        id: this._uid,
         attributes: {},
         children: []
       }
