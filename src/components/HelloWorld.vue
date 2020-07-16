@@ -1,18 +1,19 @@
 <template>
   <mjBody>
     <mjWrapper>
-      <Picture />
-      <Divider />
-      <Text />
-      <Button />
+      <modulePicture :settings="setPicture" />
+      <moduleDivider :settings="setDivider" />
+      <moduleText :settings="setText" />
+      <moduleButton :settings="setButton" />
     </mjWrapper>
   </mjBody>
 </template>
 
 <script>
-import Divider from "./mjml-module/Divider";
-import Picture from "./mjml-module/Picture";
-import Text from "./mjml-module/Text";
+import moduleDivider from "./mjml-module/moduleDivider";
+import modulePicture from "./mjml-module/modulePicture";
+import moduleText from "./mjml-module/moduleText";
+import moduleButton from "./mjml-module/moduleButton";
 // import mjColumn from "./mjml-vue/mj-column";
 // import mjSection from "./mjml-vue/mj-section";
 import mjWrapper from "./mjml-vue/mj-wrapper";
@@ -26,17 +27,94 @@ import { mjmlToHtml } from "../api";
 export default {
   name: "HelloWorld",
   components: {
-    Divider,
-    Picture,
-    Text,
+    moduleDivider,
+    modulePicture,
+    moduleText,
+    moduleButton,
     mjWrapper,
-    // Social,
+    // mj-Social,
     mjBody,
     // mjGroup,
   },
   data() {
     return {
       html: "",
+      setDivider: {
+        "padding-top": "10px",
+        "padding-bottom": "10px",
+        "container-background-color": "",
+        "border-color": "#ccc",
+        "border-style": "solid",
+        "border-width": "1px",
+        columnWidth: "100%"
+      },
+      setPicture: [
+        {
+          align: "center", // left center right
+          alt: "image description1",
+          "container-background-color": "",
+          href: "https://133.com",
+          src: "https://www.online-image-editor.com//styles/2014/images/example_image.png",
+          target: "_blank",
+          width: "120px", //px
+          height: "auto", // px or auto
+          "padding-top": "10px",
+          "padding-bottom": "10px",
+          "fluid-on-mobile": "true", // true or false
+        },
+        {
+          align: "center", // left center right
+          alt: "image description2",
+          "container-background-color": "",
+          src: "https://www.online-image-editor.com//styles/2014/images/example_image.png",
+          target: "_blank",
+          width: "220px", //px
+          height: "auto", // px or auto
+          "padding-top": "10px",
+          "padding-bottom": "25px",
+          "fluid-on-mobile": "true", // true or false
+        },
+        {
+          align: "center", // left center right
+          alt: "image description3",
+          "container-background-color": "",
+          src: "https://www.online-image-editor.com//styles/2014/images/example_image.png",
+          target: "_blank",
+          width: "290px", //px
+          height: "auto", // px or auto
+          "padding-top": "10px",
+          "padding-bottom": "25px",
+          "fluid-on-mobile": "true", // true or fals
+        }
+      ],
+      setButton: {
+        align: "center",
+        content: "meow~~",
+        "font-size": "15px",
+        "color": "#ffffff",
+        "border": "2px solid navy",
+        "border-radius": "20px",
+        "padding-top": "10px",
+        "padding-bottom": "10px",
+        "padding-left": "25px",
+        "background-color": "#345e32"
+      },
+      setText: [
+        {
+          "font-size": "16px",
+          "padding-bottom": "30px",
+          "line-height": "1.4",
+          color: "#ababab",
+          content: "等不及放暑假(?)就在市區玩(car)2天1夜祕境旅行(shiny)原來基隆就是地球村(lips)給你台南小吃地圖下次直奔這家！"
+        },
+        {
+          "font-size": "12px",
+          "padding-bottom": "10px",
+          "line-height": "1.4",
+          color: "#ababab",
+          content: "就是今天(!)先來領200元再訂電影票(eh?!)2020最強《屍速列車2》重磅上映中！"
+        }
+      ]
     };
   },
   methods: {

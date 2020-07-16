@@ -23,9 +23,10 @@
               'padding-bottom': settings['padding-bottom'],
               'padding-left': settings['padding-left'],
             }"
-            :class="{ 'mj-full-width-mobile ': settings.stack }"
           >
-            <slot></slot>
+            <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+              <slot></slot>
+            </table>
           </td>
         </tr>
       </tbody>

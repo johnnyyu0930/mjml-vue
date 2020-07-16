@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr class="mjButton">
     <td
       :align="settings.align"
       vertical-align="middle"
@@ -46,7 +46,7 @@ export default {
         return {
           content: "button",
           "align": "center",
-          "width": "",
+          "width": "100%",
           "height": "",
           "href": "#",
           "font-family": "Halvatica",
@@ -85,8 +85,7 @@ export default {
         return ''
       }
     }
-  },
+  }
 };
 </script>
 
-<style></style>

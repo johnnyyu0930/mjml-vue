@@ -49,7 +49,7 @@ export default {
           align: "center", // left center right
           alt: "image description",
           "container-background-color": "#aaaaaa",
-          href: "https://133.com",
+          href: "javascript:void(0)",
           src: "https://www.online-image-editor.com//styles/2014/images/example_image.png",
           target: "_blank",
           width: "220px", //px

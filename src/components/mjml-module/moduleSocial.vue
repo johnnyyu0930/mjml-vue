@@ -1,7 +1,10 @@
 <template>
   <MjSection>
     <MjColumn :columnWidth="columnWidth">
-      <MjButton :setting="settings" />
+      <MjSocial :settings="settings[0]" />
+    </MjColumn>
+    <MjColumn :columnWidth="columnWidth" v-if="this.settings.length > 1">
+      <MjSocial :settings="settings[1]" />
     </MjColumn>
   </MjSection>
 </template>
@@ -9,16 +12,16 @@
 <script>
 import MjSection from "../mjml-vue/mj-section";
 import MjColumn from "../mjml-vue/mj-column";
-import MjButton from "../mjml-vue/mj-button";
+import MjSocial from "../mjml-vue/mj-social";
 import mjModuleMixin from '../../mixins/mjModuleMixin';
 
 export default {
   components: {
     MjSection,
     MjColumn,
-    MjButton
+    MjSocial
   },
-  mixins: [mjModuleMixin]
+  mixins: [mjModuleMixin],
 };
 </script>
 

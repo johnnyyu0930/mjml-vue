@@ -28,7 +28,7 @@
             color: settings.color,
           }"
         >
-          <slot></slot>
+          {{ settings.content }}
         </div>
       </td>
     </tr>
@@ -54,6 +54,7 @@ export default {
           "line-height": "1.2",
           color: "black",
           "container-background-color": "",
+          content: ""
         };
       },
     },
@@ -65,6 +66,9 @@ export default {
         attributes: {},
       },
     };
+  },
+  mounted() {
+    console.log(this.settings)
   },
 };
 </script>
